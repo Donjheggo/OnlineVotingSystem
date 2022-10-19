@@ -1,0 +1,411 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SNSU COMELEC | {{ title }}</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'sb_admin/img/favicon.ico' %}" />
+    <meta property="og:image" content="{% static 'snsu.jpg' %}" />
+    <meta name="description" content="A capstone project for SNSU SSG ELECTION made by Fermilan, Christian Jhegg & Rivero, Winonna Jane">
+
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link href="{% static 'sb_admin/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Datatables -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.css"/>
+
+
+
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar bg-primary sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <div class="sidebar-brand-icon">
+                <img width="40px" src="{% static 'sb_admin/img/logo.png' %}">
+            </div>
+            <div class="sidebar-brand-text mx-2">SNSU COMELEC</div>
+        </a>
+        <hr class="sidebar-divider d-none d-md-block">
+ 
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Homepage
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span></a>
+        </li>
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            MAIN BRANCH
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'mainssg' %}">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Main SSG</span></a>
+        </li>
+
+
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            LEGISLATIVE BRANCH
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        {% if request.user.department == 'CEIT' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'ceitballot' %}">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <span>CEIT Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'CTE' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cteballot' %}">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>CTE Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'CAS' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'casballot' %}">
+                <i class="fa-solid fa-atom"></i>
+                <span>CAS Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'COT' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cotballot' %}">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>COT Department</span></a>
+        </li>
+        {% endif %}
+        {% if not request.user.is_superuser %}
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Voting Receipt
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'receipt' %}">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Receipt</span></a>
+        </li>
+        {% endif %}
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Divider -->
+        {% if request.user.is_superuser %}
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Admin Pannel
+        </div>
+
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fa fa-dashboard fa-fw"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'voters' %}">
+                <i class="fa-solid fa-people-group"></i>
+                <span>Voters</span></a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'electionschedule' %}">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span>Election Schedule</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Main SSG</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'mainssgcandidates' %}">Main SSG Candidates</a>
+                    <a class="collapse-item" href="{% url 'mainssgtally' %}">Main SSG Tally</a>
+                    <a class="collapse-item" href="{% url 'mainssgresult' %}">Main SSG Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <span>CEIT Department</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'ceitcandidates' %}">CEIT Candidates</a>
+                    <a class="collapse-item" href="{% url 'ceittally' %}">CEIT Tally</a>
+                    <a class="collapse-item" href="{% url 'ceitresult' %}">CEIT Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>CTE Department</span>
+            </a>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'ctecandidates' %}">CTE Candidates</a>
+                    <a class="collapse-item" href="{% url 'ctetally' %}">CTE Tally</a>
+                    <a class="collapse-item" href="{% url 'cteresult' %}">CTE Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <i class="fa-solid fa-atom"></i>
+                <span>CAS Department</span>
+            </a>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'cascandidates' %}">CAS Candidates</a>
+                    <a class="collapse-item" href="{% url 'castally' %}">CAS Tally</a>
+                    <a class="collapse-item" href="{% url 'casresult' %}">CAS Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>COT Department</span>
+            </a>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'cotcandidates' %}">COT Candidates</a>
+                    <a class="collapse-item" href="{% url 'cottally' %}">COT Tally</a>
+                    <a class="collapse-item" href="{% url 'cotresult' %}">COT Result</a>
+                </div>
+            </div>
+        </li>
+        {% endif %}
+
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div style="background-color: #dddd;" id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light mb-4 bg-white topbar static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Search -->
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{% if request.user.is_superuser %} {{ request.user }} {% else %} {{ request.user.first_name }} {{ request.user.last_name }} {% endif %}</span>
+                            <img class="img-profile rounded-circle"
+                                src="{% static 'sb_admin/img/user.png' %}">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'profile' request.user.id %}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- /.container-fluid -->
+            <section class="page-content">
+            {% block body %}
+            {% endblock body %}
+            </section>
+        </div>
+
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <b><span>Copyright &copy; <a class="primary" href=""> SNSU COMELEC </a> | All Rights Reserved 2022</span></b>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="{% static 'sb_admin/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'sb_admin/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'sb_admin/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'sb_admin/js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'sweetify/sweetify.js' %}"></script>
+    {% load sweetify %}
+    {% sweetify %}
+
+    <!-- Datatables -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+    
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        $(".tally-table").DataTable({
+            responsive: true,
+            pading: true,
+            pageLength: 10,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            dom: 'Bfrtipl',
+            buttons: [
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    className: 'btn btn-success',
+                    titleAttr: 'Print',
+                },
+                {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    className: 'ml-2 btn btn-secondary',
+                    titleAttr: 'PDF',
+                },
+            ]
+        });
+        $(".receipt_table").DataTable({
+            bPaginate: false,
+            responsive: true,
+            pading: true,
+            pageLength: 10,
+            lengthChange: true,
+            autoWidth: true,
+            searching: false,
+            bInfo: false,
+            bSort: false,
+            dom: 'Bfrtipl',
+            buttons: [
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    className: 'btn btn-success',
+                    titleAttr: 'Print',
+                },
+                {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    className: 'ml-2 btn btn-secondary',
+                    titleAttr: 'PDF',
+                },
+            ]
+        });
+    </script>
+    
+</body>
+
+</html>

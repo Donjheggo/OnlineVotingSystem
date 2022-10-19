@@ -1,0 +1,306 @@
+{% load static %}
+
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>SNSU COMELEC - Vote for the next SSG Officers.</title>
+    <meta property="og:image" content="{% static 'snsu.jpg' %}" />
+    <meta name="description" content="A capstone project for SNSU SSG ELECTION made by Fermilan, Christian Jhegg & Rivero, Winonna Jane">
+    
+    <!-- CSS -->
+
+    <link href="{% static 'landingpage/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="{% static 'landingpage/css/style.css' %}" rel="stylesheet">
+
+    <!-- ICONS -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="{% static 'landingpage/img/favicon.ico' %}" type="image/x-icon">
+    <link href="{% static 'landingpage/img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'landingpage/img/favicon.ico' %}" rel="apple-touch-icon">
+
+    <!-- FONTS -->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  
+  </head>
+  
+  <body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0"><!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top header-scrolled">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  
+        <a href="/" class="logo d-flex align-items-center">
+                  <img src="{% static 'logo.png' %}" alt="">
+                  <!-- <p 
+                  style="
+                  font-family: 'Open Sans', sans-serif;
+                  font-size: 30px;
+                  font-weight: bolder;
+                  padding-top: 15px;
+                  "
+                  >
+                  SNSU COMELEC
+                </p> -->
+                  
+        </a>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto active" href="#services">Services</a></li>
+            
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            <li><a class="getstarted scrollto" href="{% url 'login' %}">VOTE</a></li>        
+              
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+      </div>
+    </header><!-- End Header -->
+  
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex align-items-center">
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">A voting system for SSG Officers at SNSU
+            </h1><h2 data-aos-delay="400" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">SNSU COMELEC</h2>
+            <div data-aos-delay="600" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+              <div class="text-center text-lg-start">
+                <a href="{% url 'login' %}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span>Vote now</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-duration="1000" data-aos-easing="ease-in-out">
+            <img src="{% static 'landingpage/img/logo.png' %}" class="img-fluid" alt="" width="75%">
+          </div>
+        </div>
+      </div>
+  
+    </section><!-- End Hero -->
+  
+  <main id="main">
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+  
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+          <div class="row gx-0">
+  
+            <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+              <div class="content">
+                <h3>About</h3>
+                <h2>This project aims to develop and design a fast, easy and secure online voting system.</h2>
+                <p>
+                  This project was done by 4th year students under the course of Bachelor of Science in Information and Communication Technology, who are currently enrolled at Surigao del Norte State University.
+                </p>
+                <p>
+                  The project is built for the Surigao del Norte State University covering all its campuses located in the municipalities of Mainit, Malimono, and Del Carmen and in Surigao City all of the Province of Surigao del Norte. It is based on a fast, secure, and scalable technology that can be applicable to other higher education institutions (HEIs) in the Philippines.
+                </p>
+              </div>
+            </div>
+  
+            <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
+              <img src="{% static 'landingpage/img/About.png' %}" class="img-fluid" alt="">
+            </div>
+  
+          </div>
+        </div>
+  
+      </section><!-- End About Section -->
+  
+      <section>
+        <div class="row">
+          <div class="col-lg-4">
+            
+          </div>
+        </div>
+      </section>
+  
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+  
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+  
+          <header class="section-header">
+            <!-- <h2>Services</h2> -->
+            <p>SERVICES</p>
+          </header>
+  
+          <div class="row gy-4">
+  
+            <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-box blue">
+                <i class="ri-speed-line icon"></i>
+                <h3>Fast</h3>
+                <p>This voting system will help us to minimize the voting time duration because aside providing the voters an online platform to vote, the system will automatically count the votes for each candidates.
+                </p>
+                <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-box orange">
+                <i class="ri-check-double-line icon"></i>
+                <h3>Easy</h3>
+                <p>The developers of this system made a simple user interface to make this web application user friendly.
+                </p>
+               <!--  <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-box green">
+                <i class="ri-lock-line icon"></i>
+                <h3>Secure</h3>
+                <p>This system is made by <a style="color: blue;" href="https://www.djangoproject.com/">Django</a>, a Python framework that has solid security. It contains clickjacking protection in the form of the X-Frame-Options middleware, which in a supporting browser can prevent a site from being rendered inside a frame.
+                </p>
+               
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+      </section>
+      <!-- End Services Section -->
+  
+        
+      <!-- ======= Contact Section ======= -->
+      <section id="contact" class="contact">
+  
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+  
+          <header class="section-header">
+            <!-- <h2>Contact</h2> -->
+            <p>Contact Us</p>
+          </header>
+  
+          <div class="row gy-4">
+  
+            <div class="col-lg-12">
+  
+              <div class="row gy-4">
+                <div class="col-md-3">
+                  <div class="info-box">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Address</h3>
+                    <p>8400 Surigao City, <br/> Philippines</p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info-box">
+                    <i class="bi bi-telephone"></i>
+                    <h3>Call Us</h3>
+                    <p>+639 105 685 214 <br/>
+                      +639 556 443 569
+                        
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info-box">
+                    <i class="bi bi-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>cfermilan@ssct.edu.ph <br/>
+                        wrivero@ssct.edu.ph
+
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info-box">
+                    <i class="bi bi-clock"></i>
+                    <h3>Open Hours</h3>
+                    <p>Monday - Friday<br>8:00AM - 05:00PM</p>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </section><!-- End Contact Section -->
+  
+    </main>
+  <footer id="footer" class="footer">
+  
+      <div class="footer-top">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-7 col-md-12 footer-info">
+              <a href="#" class="logo d-flex align-items-center">
+                <img src="{% static 'landingpage/img/logo.png' %}" alt="">
+                <span>SNSU COMELEC</span>
+              </a>
+              <p>A Capstone Project made by BSICT 4A students at SNSU.
+              </p>
+              <br/>
+              <!-- <p> Social Links </p> -->
+              <div style="display: flex;" class="social-links mt-1">
+                <a href="https://facebook.com/Donjheggo/" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a><p> Fermilan, Christian Jhegg</p>
+              </div>
+                <div style="display: flex;"  class="social-links mt-2"> 
+                <a href="https://www.facebook.com/winonnajane.rivero.3" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a> <p> Rivero, Winonna Jane</p>
+                </div>
+            </div>
+  
+            <div class="col-lg-2 col-6 footer-links">
+              <h4>Links</h4>
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#services">Services</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+  
+            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+                8400 Surigao City<br>
+                Philippines <br><br>
+                <strong>Phone:</strong> +639 105 685 214<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        +639 556 443 569<br/>
+                <strong>Email:</strong> cfermilan@ssct.edu.ph<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        wrivero@ssct.edu.ph
+              </p>
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="copyright">
+          © Copyright <strong><span><a href="https://snsucomelec.com">SNSU COMELEC </a></span></strong>| All Rights Reserved 2022
+        </div>
+      </div>
+    </footer><a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
+    <script src="{% static 'landingpage/js/main.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+  
+
+    </body>
+    </html>

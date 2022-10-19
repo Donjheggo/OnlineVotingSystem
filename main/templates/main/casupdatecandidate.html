@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+
+
+{% block body %}
+
+<div class="container"> 
+    <h1 class="h3 mb-2 text-primary text-center font-weight-bolder">Update CAS Candidate</h1><br>
+<form action="" method="POST" class="user" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label> <b> Photo </b> </label>
+        {{ candidate_form.photo }}
+    </div>
+    <div class="form-group">
+        <label> <b> Fullname: </b> </label>
+        {{ candidate_form.fullname }}
+    </div>
+    <div class="form-group">
+        <label> <b> Bio </b> </label>
+        {{ candidate_form.bio }}
+    </div>
+    <div class="form-group">
+        <label> <b> Position </b> </label>
+        {{ candidate_form.position }}
+    </div>
+   <div class="d-flex justify-content-center">
+   <input type="submit" value="Save" class="btn btn-primary btn-user  w-25">
+   <a href="{% url 'cascandidates' %}" class="ml-3 btn btn-secondary btn-user  w-25">Cancel</a>
+   </div>
+</form>
+</div>
+{% endblock %}

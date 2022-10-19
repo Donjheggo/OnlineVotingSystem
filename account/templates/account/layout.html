@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SNSU COMELEC</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'landingpage/img/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{% static 'sb_admin/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- AOS -->
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+<style>
+    body {
+        background-image: url("../../../static/sb_admin/img/bg.jpg");
+    }
+</style>
+</head>
+
+
+<body id="page-top">
+{% block body %}
+
+
+{% endblock body %}
+        <script src="{% static 'sb_admin/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'sb_admin/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'sb_admin/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+        <script src="{% static 'sb_admin/js/sb-admin-2.min.js' %}"></script>
+        <script src="{% static 'sweetify/sweetify.js' %}"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        {% load sweetify %}
+        {% sweetify %}
+    </body>
+</html>

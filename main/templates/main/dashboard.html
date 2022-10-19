@@ -1,0 +1,382 @@
+{% extends 'main/layout.html' %}
+
+
+{% block body %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                    <h1 class="h3 mb-2 text-primary font-weight-bolder text-center">Dasboard</h1><br>
+
+                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2" >
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        
+                                        <a href="{% url 'voters' %}">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Registered Students/Voters
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ registered }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-people-group fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+       
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <a href="{% url 'voters' %}">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Voted Students/Voters
+                                        </div>
+                                        </a>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> {{ voted }} </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-people-group fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                       
+
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Candidates
+                                        </div>
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalcandidates }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-people-group fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                       
+                                        <a href="{% url 'mainssgcandidates' %}"> 
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            MAIN SSG Candidates
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ mainssgcandidates }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-people-line fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <a href="{% url 'ceitcandidates' %}"> 
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            CEIT Candidates
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ ceitcandidates }} </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-helmet-safety fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <a href="{% url 'ctecandidates' %}"> 
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            CTE Candidates
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ ctecandidates }} </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-chalkboard-user fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <a href="{% url 'cascandidates' %}">  
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            CAS Candidates
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ cascandidates }} </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-atom fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-dark shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <a href="{% url 'cotcandidates' %}"> 
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            COT Candidates
+                                        </div>
+                                        </a>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ cotcandidates }} </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-screwdriver-wrench fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h1 class="h3 mb-2 text-primary font-weight-bolder text-center mt-5">Tallies</h1><br>
+                
+                <div class="row mt-3" data-aos="fade-right" data-aos-anchor="#trigger-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
+
+
+                    <div class="col-lg-6" data-aos-anchor-placement="top-center">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CEIT Department Tally</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Photo</th>
+                                                <th>Full Name</th>
+                                                <th>Bio</th>
+                                                <th>Voters</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for ceit in ceit %}
+                                            <tr>
+                                                <td>{{ceit.position}}</td>
+                                                <td class="d-flex justify-content-center"><img src="{{ceit.photo_url}}" width="100xp" height="100px"></td>
+                                                <td>{{ceit.fullname}}</td>
+                                                <td>{{ceit.bio}}</td>
+                                                <td>{% for voters in ceit.voters.all %} {{ voters }},  {% endfor %}</td>  
+                                                <td>{{ceit.voters|length }} </td> 
+                                            </tr>   
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CTE Department Tally</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Photo</th>
+                                                <th>Full Name</th>
+                                                <th>Bio</th>
+                                                <th>Voters</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for cte in cte %}
+                                            <tr>
+                                                <td>{{cte.position}}</td>
+                                                <td class="d-flex justify-content-center"><img src="{{cte.photo_url}}" width="100xp" height="100px"></td>
+                                                <td>{{cte.fullname}}</td>
+                                                <td>{{cte.bio}}</td>
+                                                <td>{% for voters in cte.voters.all %} {{ voters }},  {% endfor %}</td>  
+                                                <td>{{cte.voters|length }} </td> 
+                                            </tr>   
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CAS Department Tally</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Photo</th>
+                                                <th>Full Name</th>
+                                                <th>Bio</th>
+                                                <th>Voters</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for cas in cas %}
+                                            <tr>
+                                                <td>{{cas.position}}</td>
+                                                <td class="d-flex justify-content-center"><img src="{{cas.photo_url}}" width="100xp" height="100px"></td>
+                                                <td>{{cas.fullname}}</td>
+                                                <td>{{cas.bio}}</td>
+                                                <td>{% for voters in cas.voters.all %} {{ voters }},  {% endfor %}</td> 
+                                                <td>{{cas.voters|length }} </td> 
+                                            </tr>   
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">COT Department Tally</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Photo</th>
+                                                <th>Full Name</th>
+                                                <th>Bio</th>
+                                                <th>Voters</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for cot in cot %}
+                                            <tr>
+                                                <td>{{cot.position}}</td>
+                                                <td class="d-flex justify-content-center"><img src="{{cot.photo_url}}" width="100xp" height="100px"></td>>
+                                                <td>{{cot.fullname}}</td>
+                                                <td>{{cot.bio}}</td>
+                                                <td>{% for voters in cot.voters.all %} {{ voters }},  {% endfor %}</td>  
+                                                <td>{{cot.voters|length }} </td> 
+                                            </tr>   
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">MAIN SSG Tally</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Photo</th>
+                                                <th>Full Name</th>
+                                                <th>Bio</th>
+                                                <th>Voters</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for mainssg in mainssg %}
+                                            <tr>
+                                                <td>{{mainssg.position}}</td>
+                                                <td class="d-flex justify-content-center"><img src="{{mainssg.photo_url}}" width="100xp" height="100px"></td>
+                                                <td>{{mainssg.fullname}}</td>
+                                                <td>{{mainssg.bio}}</td>
+                                                <td>{% for voters in mainssg.voters.all %} {{ voters }},  {% endfor %}</td>  
+                                                <td>{{mainssg.voters|length }} </td> 
+                                            </tr>   
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+{% endblock %}

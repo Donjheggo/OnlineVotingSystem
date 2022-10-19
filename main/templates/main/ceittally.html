@@ -1,0 +1,44 @@
+{% extends 'main/layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div> 
+        <h1 class="h3 mb-2 text-primary font-weight-bolder text-center"> CEIT Department</h1>
+    </div>
+
+
+    <div class="card shadow mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary text-center">College of Engineering and Information Technology Election Tally</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Photo</th>
+                            <th>Full Name</th>
+                            <th>Bio</th>
+                            <th>Voters</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ceit in ceit %}
+                        <tr>
+                            <td>{{ceit.position}}</td>
+                            <td class="d-flex justify-content-center"><img src="{{ ceit.photo_url }}" width="100xp" height="100px"></td>
+                            <td>{{ceit.fullname}}</td>
+                            <td>{{ceit.bio}}</td>
+                            <td>{% for voters in ceit.voters.all %} {{ voters }},  {% endfor %}</td> 
+                            <td>{{ ceit.voters|length }} </td> 
+                        </tr>   
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

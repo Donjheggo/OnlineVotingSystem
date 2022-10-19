@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block body %}
+
+<div class="container w-50 text-center">
+    <p> Are you sure to delete Candidate<b style="color: red;"> {{ ctecandidate }} </b>? </p>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+
+    <input class="btn btn-danger mt-3" type="submit" value="Delete">
+    <a href="{% url 'ctecandidates' %}" class="btn btn-light mt-3" > Cancel </a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/layout.html' %}
+
+
+{% block body %}
+
+<div class="container"> 
+    <div class="card p-5"> 
+        <h1 class="h3 mb-2 text-primary font-weight-bolder text-center mb-3"> Profile </h1>
+        <hr>
+    <form action="" method="POST" class="user mt-5">
+        {% csrf_token %}
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+            <label> Email: </label>   
+            {{ profile.email }}
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+            <label> Department: </label>   
+            {{ profile.department }}
+            </div>
+        </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <label> Fullname: </label>   
+            {{ profile.last_name }}, {{ profile.first_name }}
+        </div>
+        <div class="col-sm-6">
+            <label> Voted: </label>  
+            {% if profile.voted %}
+           <i class="fa-solid fa-check"></i>
+            {% else %}
+           <i class="fa-solid fa-x"></i> 
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            {{ student_form.password }}
+        </div>
+        <div class="col-sm-6">
+            <input type="password" name="password2" class="form-control form-control-user" placeholder="Confirm Password">
+        </div>
+    </div>
+    <div class="help" id="id_password1_helptext">
+        <ul style="font-size: 13px;">
+            <li>Only SNSU Gsuite email accepted.</li>
+            <li>Password can’t be too similar to other personal information.</li>
+            <li>Password must contain at least 8 characters.</li>
+            <li>Password can’t be a commonly used password.</li>
+            <li>Password can’t be entirely numeric.</li>
+        </ul>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-center">
+    <input type="submit" value="Save" class="btn btn-primary btn-user  w-25">
+    <a href="{{request.META.HTTP_REFERER}}" class="ml-3 btn btn-secondary btn-user  w-25">Cancel</a>
+    </div>
+    </form>
+    </div>
+</div>
+{% endblock %}

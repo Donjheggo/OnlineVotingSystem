@@ -1,0 +1,391 @@
+{% extends 'main/layout.html' %}
+
+{% block body %}
+<h1 class="h3 mb-2 text-primary font-weight-bolder text-center"> College of Teacher Education Department Election</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+        <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Governor</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for governor in governor %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="governor" value="{{governor}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{governor.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ governor.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{governor.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Vice Governor</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for vicegovernor in vicegovernor %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="vicegovernor" value="{{vicegovernor}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{vicegovernor.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ vicegovernor.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{vicegovernor.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Secretary</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for secretary in secretary %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="secretary" value="{{secretary}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{secretary.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ secretary.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{secretary.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Treasurer</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for treasurer in treasurer %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="treasurer" value="{{treasurer}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{treasurer.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ treasurer.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{treasurer.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Auditor</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for auditor in auditor %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="auditor" value="{{auditor}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{auditor.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ auditor.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{auditor.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>P.I.O.</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for pio in pio %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="pio" value="{{pio}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{pio.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ pio.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{pio.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Business Manager</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for businessmanager in businessmanager %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="businessmanager" value="{{businessmanager}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{businessmanager.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ businessmanager.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{businessmanager.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 m-3 d-flex justify-content-center">
+                    <div class="card border-bottom-primary shadow w-75">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Peace Officer</b></h5>
+                            <hr>
+                            <ul style="list-style: none; margin-left: -40px;">
+                                {% for peaceofficer in peaceofficer %}
+                                <li class="d-flex">
+                                    <h5>
+                                        <input style="height:15px; width:15px;" type="radio" name="peaceofficer" value="{{peaceofficer}}"> 
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{peaceofficer.modal_id}}">
+                                                <i class="fa-solid fa-magnifying-glass-plus"></i> Bio</a> 
+
+                                            <img src="{{ peaceofficer.photo_url }}" width="100px" height="100px" class="ml-2 mr-2">
+                                            <b class="ml-3"> {{peaceofficer.fullname}} </b>
+                                    </h5> 
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+        </div>
+    {% if not request.user.is_superuser %}
+    <div class="d-flex justify-content-center mt-5 mb-5">
+        <input type="submit" class="btn btn-primary" value="Vote">
+    </div>
+    {% endif %}
+</form>
+    
+    {% for governor in governor %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{governor.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ governor.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{governor.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+
+    {% for vicegovernor in vicegovernor %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{vicegovernor.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ vicegovernor.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{vicegovernor.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+    {% for secretary in secretary %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{secretary.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ secretary.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{secretary.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+
+    {% for treasurer in treasurer %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{treasurer.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ treasurer.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{treasurer.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+    {% for auditor in auditor %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{auditor.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ auditor.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{auditor.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+    {% for pio in pio %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{pio.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ pio.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{pio.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+
+    {% for businessmanager in businessmanager %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{businessmanager.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ businessmanager.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{businessmanager.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+    {% for peaceofficer in peaceofficer %}
+    <!-- Modal -->
+    <div class="modal fade" id="{{peaceofficer.modal_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>{{ peaceofficer.fullname }}'s</b> Bio</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{{peaceofficer.bio}}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    {% endfor %}
+
+
+{% endblock body %}

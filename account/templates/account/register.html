@@ -1,0 +1,71 @@
+{% extends 'account/layout.html' %}
+
+{% block body %}
+<div style="margin-top: 150px;" class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+        <div class="card-body p-0" >
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account</h1>
+                            {% if error %}
+                            <p style="color: red;">{{ error }}</p>
+                            {% else %}
+                            {% endif %}
+                        </div>
+                        <form action="" method="POST" class="user">
+                             {% csrf_token %}
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                {{ Registration_Form.email }}
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                {{ Registration_Form.department }}
+                                </div>
+                            </div>
+                            <ul style="font-size:13px; list-style: none;">
+                                <li></li>
+                            </ul>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {{ Registration_Form.first_name }}
+                                </div>
+                                <div class="col-sm-6">
+                                    {{ Registration_Form.last_name }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {{ Registration_Form.password }}
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" name="password2" class="form-control form-control-user" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="help" id="id_password1_helptext">
+                                <ul style="font-size: 13px;">
+                                    <li>Only SNSU Gsuite email accepted.</li>
+                                    <li>Password can’t be too similar to other personal information.</li>
+                                    <li>Password must contain at least 8 characters.</li>
+                                    <li>Password can’t be a commonly used password.</li>
+                                    <li>Password can’t be entirely numeric.</li>
+                                </ul>
+                            </div>
+                            <input type="submit" value="Register" class="btn btn-primary btn-user btn-block">
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

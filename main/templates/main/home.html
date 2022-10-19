@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="col-12 m-3 d-flex justify-content-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+    <div class="card w-100 mr-4" >
+        <div class="card-body">
+            <h1 class="text-center text-primary font-weight-bolder"> Welcome {{ request.user }} </h1>
+            <hr/>
+            <h4 class="text-primary"> Instructions: </h4>
+            <h5 class="text-left mt-3"> 
+                <ul> 
+                    <li> Main SSG election have different schedule compared to Legislative Branch. </li>
+                    <li> If Legislative Branch election is on scheduled, you can only vote based on your respective deparment. </li>
+                    <li> You can only vote once and cannot be undone. </li>
+                    <li> You can print your voting receipt on the receipt navigation. </li>
+                    <li> Vote wisely! </li>
+                </ul>
+            </h5>
+            <img src="{% static 'banner.jpg' %}" width="100%" alt="banner">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

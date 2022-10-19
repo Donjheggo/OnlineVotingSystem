@@ -1,0 +1,80 @@
+{% extends 'main/layout.html' %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+    <div style="display: flex;"> 
+        <h1 class="h3 mb-2 text-primary font-weight-bolder">Election Schedule</h1><br>
+        <a class="ml-auto btn btn-primary mb-3" data-toggle="modal" data-target="#Addmodal">Add</a>
+    </div>
+
+    <div class="card shadow mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary text-center">Election Schedule Table</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Department</th>
+                            <th>Election Starts</th>
+                            <th>Election Ends</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for schedule in schedule %}
+                        <tr>
+                            <td>{{schedule.department}}</td>
+                            <td>{{schedule.start}}</td>
+                            <td>{{schedule.end}}</td>
+                            <td class="text-center">  
+                                <a href="{% url 'updateelectionschedule' schedule.id %}" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="{% url 'deleteelectionschedule' schedule.id %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>   
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="Addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Schedule</b></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Department</label>
+                        {{ schedule_form.department }}
+                    </div>
+                    <div class="form-group">
+                        <label>Election Starts:</label>
+                        {{ schedule_form.start }}
+                    </div>
+                    <div class="form-group">
+                        <label>Election Ends:</label>
+                        {{ schedule_form.end }}
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit">Confirm</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
