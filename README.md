@@ -185,7 +185,7 @@ Password: student
 
 ## For Sponsor or Projects Enquiry
 1. Email - christianjheggfer@gmail.com
-2. LinkedIn - [donjheggo](https://www.linkedin.com/in/christian-jhegg-fermilan-216752222/)
+2. LinkedIn - [donjheggo](www.linkedin.com/in/donjheggo)
 2. Twitter - [donjheggo](https://www.facebook.com/Donjheggo)
 
 
