@@ -21,7 +21,7 @@ This automated voting system for institutions and/or organizations is implemente
 - [x] CRUD candidates
 - [x] CRUD positions
 
-## A. Admin Users Can
+## A. Administrator Can
 1. Set Election Schedule
 2. See Overall Summary of Votes
 3. Check Voters
