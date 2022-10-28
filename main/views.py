@@ -397,7 +397,7 @@ def updatectecandidate(request, pk):
         'candidate_form': candidate_form
     }
     if request.method == 'POST':
-        candidate_form = CTE_CandidatesForm(request.POST, instance=candidate)
+        candidate_form = CTE_CandidatesForm(request.POST, request.FILES, instance=candidate)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse('ctecandidates'))
@@ -622,7 +622,7 @@ def updatecascandidate(request, pk):
         'candidate_form': candidate_form
     }
     if request.method == 'POST':
-        candidate_form = CAS_CandidatesForm(request.POST, instance=candidate)
+        candidate_form = CAS_CandidatesForm(request.POST, request.FILES, instance=candidate)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse('cascandidates'))
@@ -844,7 +844,7 @@ def updatecotcandidate(request, pk):
         'candidate_form': candidate_form
     }
     if request.method == 'POST':
-        candidate_form = COT_CandidatesForm(request.POST, instance=candidate)
+        candidate_form = COT_CandidatesForm(request.POST, request.FILES, instance=candidate)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse('cotcandidates'))
@@ -1044,7 +1044,7 @@ def cotballot(request):
 def mainssgcandidates(request):
     candidate_form = MAINSSG_CandidatesForm()
     if request.method == 'POST':
-        candidate_form = CEIT_CandidatesForm(request.POST, request.FILES)
+        candidate_form = MAINSSG_CandidatesForm(request.POST, request.FILES)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse("mainssgcandidates"))
@@ -1066,7 +1066,7 @@ def updatemainssgcandidate(request, pk):
         'candidate_form': candidate_form
     }
     if request.method == 'POST':
-        candidate_form = MAINSSG_CandidatesForm(request.POST, instance=candidate)
+        candidate_form = MAINSSG_CandidatesForm(request.POST, request.FILES, instance=candidate)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse('mainssgcandidates'))
