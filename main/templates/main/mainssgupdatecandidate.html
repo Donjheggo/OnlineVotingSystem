@@ -5,9 +5,9 @@
 
 <div class="container"> 
     <h1 class="h3 mb-2 text-primary text-center font-weight-bolder">Update MAIN SSG Candidate</h1><br>
-<form action="" method="POST" class="user">
+<form action="" method="POST" class="user" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form-group" enctype="multipart/form-data">
+    <div class="form-group">
         <label> <b> Photo </b> </label>
         {{ candidate_form.photo }}
     </div>
