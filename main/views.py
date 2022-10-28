@@ -370,16 +370,13 @@ def ceitballot(request):
 
 
 
-
-
-
 #################################################  CTE   ##################################################
 
 @user_passes_test(lambda u: u.is_superuser)
 def ctecandidates(request):
     candidate_form = CTE_CandidatesForm()
     if request.method == 'POST':
-        candidate_form = CTE_CandidatesForm(request.POST)
+        candidate_form = CTE_CandidatesForm(request.POST, request.FILES)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse("ctecandidates"))
@@ -602,7 +599,7 @@ def cteballot(request):
 def cascandidates(request):
     candidate_form = CAS_CandidatesForm()
     if request.method == 'POST':
-        candidate_form = CAS_CandidatesForm(request.POST)
+        candidate_form = CAS_CandidatesForm(request.POST, request.FILES)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse("cascandidates"))
@@ -613,6 +610,8 @@ def cascandidates(request):
         'cas': CAS_Candidate.objects.all()
     }
     return render(request, 'main/cascandidates.html', context)
+
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def updatecascandidate(request, pk):
@@ -823,7 +822,7 @@ def casballot(request):
 def cotcandidates(request):
     candidate_form = COT_CandidatesForm()
     if request.method == 'POST':
-        candidate_form = COT_CandidatesForm(request.POST)
+        candidate_form = COT_CandidatesForm(request.POST, request.FILES)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse("cotcandidates"))
@@ -1045,7 +1044,7 @@ def cotballot(request):
 def mainssgcandidates(request):
     candidate_form = MAINSSG_CandidatesForm()
     if request.method == 'POST':
-        candidate_form = MAINSSG_CandidatesForm(request.POST)
+        candidate_form = CEIT_CandidatesForm(request.POST, request.FILES)
         if candidate_form.is_valid():
             candidate_form.save()
             return HttpResponseRedirect(reverse("mainssgcandidates"))
