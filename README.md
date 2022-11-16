@@ -38,11 +38,78 @@ This automated voting system for institutions and/or organizations is implemente
 
 ## 📸 ScreenShots
 <figure>
+  <figcaption>Database Design</figcaption>
   <img
   src="screenshots/ERD/ERD.png"
   alt="ERD">
-  <figcaption>Database Design</figcaption>
 </figure>
+
+<figure>
+  <figcaption>Homepage Interface</figcaption>
+  <img
+  src="screenshots/MAIN/1.png"
+  alt="1">
+  <img
+  src="screenshots/MAIN/2.png"
+  alt="2">
+  <img
+  src="screenshots/MAIN/3.png"
+  alt="3">
+  <img
+  src="screenshots/MAIN/4.png"
+  alt="4">
+  <img
+  src="screenshots/MAIN/5.png"
+  alt="5">
+  <img
+  src="screenshots/MAIN/6.png"
+  alt="6">
+
+</figure>
+
+
+<figure>
+  <figcaption>User/Voter Interface</figcaption>
+  <img
+  src="screenshots/MAIN/user/1.png"
+  alt="1">
+  <img
+  src="screenshots/MAIN/user/2.png"
+  alt="2">
+  <img
+  src="screenshots/MAIN/user/3.png"
+  alt="3">
+  <img
+  src="screenshots/MAIN/user/4.png"
+  alt="4">
+  <img
+  src="screenshots/MAIN/user/5.png"
+  alt="5">
+
+</figure>
+
+
+<figure>
+  <figcaption>Admin Interface</figcaption>
+  <img
+  src="screenshots/MAIN/admin/1.png"
+  alt="1">
+  <img
+  src="screenshots/MAIN/admin/2.png"
+  alt="2">
+  <img
+  src="screenshots/MAIN/admin/3.png"
+  alt="3">
+  <img
+  src="screenshots/MAIN/admin/4.png"
+  alt="4">
+  <img
+  src="screenshots/MAIN/admin/5.png"
+  alt="5">
+
+</figure>
+
+
 
 
 
@@ -186,7 +253,7 @@ Password: student
 ## For Sponsor or Projects Enquiry
 1. Email - christianjheggfer@gmail.com
 2. LinkedIn - [donjheggo](www.linkedin.com/in/donjheggo)
-2. Twitter - [donjheggo](https://www.facebook.com/Donjheggo)
+2. Facebook - [donjheggo](https://www.facebook.com/Donjheggo)
 
 
 

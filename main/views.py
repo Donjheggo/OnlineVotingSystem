@@ -39,6 +39,41 @@ def voters(request):
     }
     return render(request, 'main/voters.html', context)
 
+
+@user_passes_test(lambda u: u.is_superuser)
+def updatevoter(request, pk):
+    voter = Account.objects.get(id=pk)
+    voterform = RegistrationForm(instance=voter)
+    if request.method == 'POST':
+        voterform = RegistrationForm(request.POST, instance=voter)
+        if voterform.is_valid():
+            voterform.save()
+            return HttpResponseRedirect(reverse('voters'))
+
+    context = {
+        'title': 'Update Voter',
+        'voter': voter,
+        'form': voterform,
+    }
+    
+    return render(request, 'main/voterupdate.html', context)
+
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def deletevoter(request, pk):
+    voter = Account.objects.get(id=pk)
+    context = {
+        'title': 'Delete Voter',
+        'voter': voter,
+    }
+    if request.method == 'POST':
+        voter.delete()
+        return HttpResponseRedirect(reverse('voters'))
+    return render(request, 'main/voterdelete.html', context)
+
+
+
 @login_required(login_url='login')
 @verified_or_superuser
 def profile(request, pk):
@@ -139,7 +174,7 @@ def dashboard(request):
         'cascandidates': cascandidates,
 
         'cot': COT_Candidate.objects.all(),
-        'cotcandidates': COT_Candidate.objects.all().count(),
+        'cotcandidates': cotcandidates,
         
         'registered': Account.objects.filter(voted=False, is_superuser=False).count(),
         'voted': Account.objects.filter(voted=True).count(),
@@ -422,6 +457,7 @@ def deletectecandidate(request, pk):
 @user_passes_test(lambda u: u.is_superuser)
 def ctetally(request):
     context = {
+        'title': 'CTE Tally',
         'cte': CTE_Candidate.objects.all(),
     }
     return render(request, 'main/ctetally.html', context)
@@ -1036,8 +1072,6 @@ def cotballot(request):
 
 
 
-
-
 ###############################################################################################################################################################
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -1062,8 +1096,8 @@ def updatemainssgcandidate(request, pk):
     candidate = MAINSSG_Candidate.objects.get(id=pk)
     candidate_form = MAINSSG_CandidatesForm(instance=candidate)
     context = {
-        'title': 'Update Main SSG Candidate',
-        'candidate_form': candidate_form
+                'title': 'Update Main SSG Candidate',
+                'candidate_form': candidate_form
     }
     if request.method == 'POST':
         candidate_form = MAINSSG_CandidatesForm(request.POST, request.FILES, instance=candidate)

@@ -190,13 +190,13 @@
 
                 <h1 class="h3 mb-2 text-primary font-weight-bolder text-center mt-5">Tallies</h1><br>
                 
-                <div class="row mt-3" data-aos="fade-right" data-aos-anchor="#trigger-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
 
+                <div class="row mt-3" data-aos="fade-right" data-aos-anchor="#trigger-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
 
                     <div class="col-lg-6" data-aos-anchor-placement="top-center">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary text-center">CEIT Department Tally</h6>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CEIT Deparment Tally</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -204,10 +204,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Photo</th>
                                                 <th>Full Name</th>
-                                                <th>Bio</th>
-                                                <th>Voters</th>
                                                 <th>Votes</th>
                                             </tr>
                                         </thead>
@@ -215,11 +212,8 @@
                                             {% for ceit in ceit %}
                                             <tr>
                                                 <td>{{ceit.position}}</td>
-                                                <td class="d-flex justify-content-center"><img src="{{ceit.photo_url}}" width="100xp" height="100px"></td>
                                                 <td>{{ceit.fullname}}</td>
-                                                <td>{{ceit.bio}}</td>
-                                                <td>{% for voters in ceit.voters.all %} {{ voters }},  {% endfor %}</td>  
-                                                <td>{{ceit.voters|length }} </td> 
+                                                <td>{{ ceit.voters|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -230,10 +224,11 @@
                     </div>
 
 
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-6" data-aos-anchor-placement="top-center">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary text-center">CTE Department Tally</h6>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CTE Deparment Tally</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -241,10 +236,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Photo</th>
                                                 <th>Full Name</th>
-                                                <th>Bio</th>
-                                                <th>Voters</th>
                                                 <th>Votes</th>
                                             </tr>
                                         </thead>
@@ -252,11 +244,8 @@
                                             {% for cte in cte %}
                                             <tr>
                                                 <td>{{cte.position}}</td>
-                                                <td class="d-flex justify-content-center"><img src="{{cte.photo_url}}" width="100xp" height="100px"></td>
                                                 <td>{{cte.fullname}}</td>
-                                                <td>{{cte.bio}}</td>
-                                                <td>{% for voters in cte.voters.all %} {{ voters }},  {% endfor %}</td>  
-                                                <td>{{cte.voters|length }} </td> 
+                                                <td>{{ cte.voters|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -265,12 +254,12 @@
                             </div>
                         </div>
                     </div>
-                    
 
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-6" data-aos-anchor-placement="top-center">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary text-center">CAS Department Tally</h6>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">CAS Deparment Tally</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -278,10 +267,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Photo</th>
                                                 <th>Full Name</th>
-                                                <th>Bio</th>
-                                                <th>Voters</th>
                                                 <th>Votes</th>
                                             </tr>
                                         </thead>
@@ -289,11 +275,8 @@
                                             {% for cas in cas %}
                                             <tr>
                                                 <td>{{cas.position}}</td>
-                                                <td class="d-flex justify-content-center"><img src="{{cas.photo_url}}" width="100xp" height="100px"></td>
                                                 <td>{{cas.fullname}}</td>
-                                                <td>{{cas.bio}}</td>
-                                                <td>{% for voters in cas.voters.all %} {{ voters }},  {% endfor %}</td> 
-                                                <td>{{cas.voters|length }} </td> 
+                                                <td>{{ cas.voters|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -303,10 +286,11 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-6" data-aos-anchor-placement="top-center">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary text-center">COT Department Tally</h6>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">COT Deparment Tally</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -314,10 +298,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Photo</th>
                                                 <th>Full Name</th>
-                                                <th>Bio</th>
-                                                <th>Voters</th>
                                                 <th>Votes</th>
                                             </tr>
                                         </thead>
@@ -325,11 +306,8 @@
                                             {% for cot in cot %}
                                             <tr>
                                                 <td>{{cot.position}}</td>
-                                                <td class="d-flex justify-content-center"><img src="{{cot.photo_url}}" width="100xp" height="100px"></td>>
                                                 <td>{{cot.fullname}}</td>
-                                                <td>{{cot.bio}}</td>
-                                                <td>{% for voters in cot.voters.all %} {{ voters }},  {% endfor %}</td>  
-                                                <td>{{cot.voters|length }} </td> 
+                                                <td>{{ cot.voters|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -339,10 +317,12 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+
+
+                    <div class="col-lg-6" data-aos-anchor-placement="top-center">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary text-center">MAIN SSG Tally</h6>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">Main SSG Deparment Tally</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -350,10 +330,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Photo</th>
                                                 <th>Full Name</th>
-                                                <th>Bio</th>
-                                                <th>Voters</th>
                                                 <th>Votes</th>
                                             </tr>
                                         </thead>
@@ -361,11 +338,8 @@
                                             {% for mainssg in mainssg %}
                                             <tr>
                                                 <td>{{mainssg.position}}</td>
-                                                <td class="d-flex justify-content-center"><img src="{{mainssg.photo_url}}" width="100xp" height="100px"></td>
                                                 <td>{{mainssg.fullname}}</td>
-                                                <td>{{mainssg.bio}}</td>
-                                                <td>{% for voters in mainssg.voters.all %} {{ voters }},  {% endfor %}</td>  
-                                                <td>{{mainssg.voters|length }} </td> 
+                                                <td>{{ mainssg.voters|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -374,6 +348,15 @@
                             </div>
                         </div>
                     </div>
+
+
+                    
+
+                    
+
+
+
+                    
 
 
                 </div>

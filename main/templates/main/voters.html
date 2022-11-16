@@ -20,6 +20,7 @@
                             <th>Deparment</th>
                             <th>Verification Status</th>
                             <th>Voting Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,10 @@
                             <td> {{ voter.department }} </td>
                             <td class="text-center"> {% if voter.verified %} <div class="badge bg-primary text-white rounded-pill">Verified</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
                             <td class="text-center"> {% if voter.voted %} <div class="badge bg-primary text-white rounded-pill">Voted</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
+                            <td class="text-center">  
+                                <a href="{% url 'updatevoter' voter.id %}" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="{% url 'deletevoter' voter.id %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
                         </tr>   
                        {% endfor %}
                     </tbody>

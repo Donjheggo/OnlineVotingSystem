@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block body %}
+
+<div class="container w-50 text-center">
+    <p> Are you sure to delete <b style="color: red;"> {{ voter }} </b>? </p>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+
+    <input class="btn btn-danger mt-3" type="submit" value="Delete">
+    <a href="{% url 'voters' %}" class="btn btn-light mt-3" > Cancel </a>
+    </form>
+</div>
+{% endblock %}

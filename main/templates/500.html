@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SNSU COMELEC</title>
+
+    <link rel="stylesheet" href="{% static '404/404.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'sb_admin/img/favicon.ico' %}" />
+    <meta property="og:image" content="{% static 'snsu.jpg' %}" />
+    <meta name="description" content="A capstone project for SNSU SSG ELECTION made by Fermilan, Christian Jhegg & Rivero, Winonna Jane">
+
+
+</head>
+<body>
+    <div class="noise"></div>
+        <div class="overlay"></div>
+            <div class="terminal">
+                <h1>Error <span class="errorcode">500</span></h1>
+                <p class="output">The page you are looking is having server error</p>
+                <p class="output"><a href="{% url 'landingpage' %}">return to the homepage</a>.</p>
+                <p class="output">Good luck.</p>
+    </div>
+</body>
+</html>
