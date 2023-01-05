@@ -23,10 +23,12 @@ def home(request):
     return render(request, 'main/home.html', context)
 
 @login_required(login_url='login')
-@not_superuser
+@verified_or_superuser
+@receipt_exist
 def receipt(request):
     context = {
-        'receipt': Receipt.objects.get(owner=request.user)
+        'title': 'Receipt',
+        'receipts': Receipt.objects.filter(owner=request.user)
 
     }
     return render(request, 'main/receipt.html', context)
@@ -156,6 +158,8 @@ def dashboard(request):
     cascandidates = CAS_Candidate.objects.all().count()
     cotcandidates = COT_Candidate.objects.all().count()
     totalcandidates = mainssgcandidates + ceitcandidates + ctecandidates + cascandidates + cotcandidates
+    voted_department = Account.objects.filter(voted_department=True).count()
+    voted_main = Account.objects.filter(voted_main=True).count()
     context = {
         'title': 'Dashboard',
 
@@ -176,8 +180,8 @@ def dashboard(request):
         'cot': COT_Candidate.objects.all(),
         'cotcandidates': cotcandidates,
         
-        'registered': Account.objects.filter(voted=False, is_superuser=False).count(),
-        'voted': Account.objects.filter(voted=True).count(),
+        'registered': Account.objects.filter(is_superuser=False).count(),
+        'voted': voted_department + voted_main,
     }
     return render(request, 'main/dashboard.html', context)
 
@@ -261,7 +265,7 @@ def ceitresult(request):
 @login_required(login_url='login')
 @verified_or_superuser
 @ceit_voter_or_superuser
-@not_voted_or_superuser
+@department_not_voted_or_superuser
 @ceit_schedule_or_superuser
 def ceitballot(request):
     context = {
@@ -277,20 +281,19 @@ def ceitballot(request):
     }
     if request.method == 'POST':
         voter = request.user
-        voter.voted = True
+        voter.voted_department = True
         voter.save()
-        sweetify.success(request, 'Voted Submitted!')
+        sweetify.success(request, 'Vote Submitted!')
 
-        
-    
-     ###### GOVERNOR ######
+
+    ###### GOVERNOR ######
     try: 
         request.POST['governor']
         voted_governor = request.POST["governor"]
         g_voted = CEIT_Candidate.objects.get(fullname=voted_governor)
         g_voters = g_voted.voters
         g_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.governor = voted_governor
         receipt.save()
 
@@ -304,7 +307,7 @@ def ceitballot(request):
         vg_voted = CEIT_Candidate.objects.get(fullname=voted_vicegovernor)
         vg_voters = vg_voted.voters
         vg_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.vice_governor = voted_vicegovernor
         receipt.save()
 
@@ -319,7 +322,7 @@ def ceitballot(request):
         s_voted = CEIT_Candidate.objects.get(fullname=voted_secretary)
         s_voters = s_voted.voters
         s_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.secretary = voted_secretary
         receipt.save()
 
@@ -334,7 +337,7 @@ def ceitballot(request):
         t_voted = CEIT_Candidate.objects.get(fullname=voted_treasurer)
         t_voters = t_voted.voters
         t_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.treasurer = voted_treasurer
         receipt.save()
         
@@ -348,7 +351,7 @@ def ceitballot(request):
         a_voted = CEIT_Candidate.objects.get(fullname=voted_auditor)
         a_voters = a_voted.voters
         a_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.auditor = voted_auditor
         receipt.save()
         
@@ -362,7 +365,7 @@ def ceitballot(request):
         p_voted = CEIT_Candidate.objects.get(fullname=voted_pio)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.pio = voted_pio
         receipt.save()
         
@@ -376,7 +379,7 @@ def ceitballot(request):
         b_voted = CEIT_Candidate.objects.get(fullname=voted_buss)
         b_voters = b_voted.voters
         b_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.businessmanager = voted_buss
         receipt.save()
         
@@ -390,14 +393,13 @@ def ceitballot(request):
         p_voted = CEIT_Candidate.objects.get(fullname=voted_peace)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CEIT')
         receipt.peaceofficer = voted_peace
         receipt.save()
         return HttpResponseRedirect(reverse('receipt'))
         
     except:
         print("No selected Peace Officer")
-
 
 
     return render(request, 'main/ceitballot.html', context)
@@ -482,7 +484,7 @@ def cteresult(request):
 @login_required(login_url='login')
 @verified_or_superuser
 @cte_voter_or_superuser
-@not_voted_or_superuser
+@department_not_voted_or_superuser
 @cte_schedule_or_superuser
 def cteballot(request):
     context = {
@@ -498,10 +500,9 @@ def cteballot(request):
     }
     if request.method == 'POST':
         voter = request.user
-        voter.voted = True
+        voter.voted_department = True
         voter.save()
-        sweetify.success(request, 'Voted Submitted!')
-        
+        sweetify.success(request, 'Vote Submitted!')
         
 
     ###### GOVERNOR ######
@@ -511,7 +512,7 @@ def cteballot(request):
         g_voted = CTE_Candidate.objects.get(fullname=voted_governor)
         g_voters = g_voted.voters
         g_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.governor = voted_governor
         receipt.save()
 
@@ -525,7 +526,7 @@ def cteballot(request):
         vg_voted = CTE_Candidate.objects.get(fullname=voted_vicegovernor)
         vg_voters = vg_voted.voters
         vg_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.vice_governor = voted_vicegovernor
         receipt.save()
 
@@ -540,7 +541,7 @@ def cteballot(request):
         s_voted = CTE_Candidate.objects.get(fullname=voted_secretary)
         s_voters = s_voted.voters
         s_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.secretary = voted_secretary
         receipt.save()
 
@@ -555,7 +556,7 @@ def cteballot(request):
         t_voted = CTE_Candidate.objects.get(fullname=voted_treasurer)
         t_voters = t_voted.voters
         t_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.treasurer = voted_treasurer
         receipt.save()
         
@@ -569,7 +570,7 @@ def cteballot(request):
         a_voted = CTE_Candidate.objects.get(fullname=voted_auditor)
         a_voters = a_voted.voters
         a_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.auditor = voted_auditor
         receipt.save()
         
@@ -583,7 +584,7 @@ def cteballot(request):
         p_voted = CTE_Candidate.objects.get(fullname=voted_pio)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.pio = voted_pio
         receipt.save()
         
@@ -597,7 +598,7 @@ def cteballot(request):
         b_voted = CTE_Candidate.objects.get(fullname=voted_buss)
         b_voters = b_voted.voters
         b_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.businessmanager = voted_buss
         receipt.save()
         
@@ -611,7 +612,7 @@ def cteballot(request):
         p_voted = CTE_Candidate.objects.get(fullname=voted_peace)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CTE')
         receipt.peaceofficer = voted_peace
         receipt.save()
         return HttpResponseRedirect(reverse('receipt'))
@@ -708,7 +709,7 @@ def casresult(request):
 @login_required(login_url='login')
 @verified_or_superuser
 @cas_voter_or_superuser
-@not_voted_or_superuser
+@department_not_voted_or_superuser
 @cas_schedule_or_superuser
 def casballot(request):
     context = {
@@ -724,12 +725,11 @@ def casballot(request):
     }
     if request.method == 'POST':
         voter = request.user
-        voter.voted = True
+        voter.voted_department = True
         voter.save()
-        sweetify.success(request, 'Voted Submitted!')
+        sweetify.success(request, 'Vote Submitted!')
         
 
-        
     ###### GOVERNOR ######
     try: 
         request.POST['governor']
@@ -737,7 +737,7 @@ def casballot(request):
         g_voted = CAS_Candidate.objects.get(fullname=voted_governor)
         g_voters = g_voted.voters
         g_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.governor = voted_governor
         receipt.save()
 
@@ -751,7 +751,7 @@ def casballot(request):
         vg_voted = CAS_Candidate.objects.get(fullname=voted_vicegovernor)
         vg_voters = vg_voted.voters
         vg_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.vice_governor = voted_vicegovernor
         receipt.save()
 
@@ -766,7 +766,7 @@ def casballot(request):
         s_voted = CAS_Candidate.objects.get(fullname=voted_secretary)
         s_voters = s_voted.voters
         s_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.secretary = voted_secretary
         receipt.save()
 
@@ -781,7 +781,7 @@ def casballot(request):
         t_voted = CAS_Candidate.objects.get(fullname=voted_treasurer)
         t_voters = t_voted.voters
         t_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.treasurer = voted_treasurer
         receipt.save()
         
@@ -795,7 +795,7 @@ def casballot(request):
         a_voted = CAS_Candidate.objects.get(fullname=voted_auditor)
         a_voters = a_voted.voters
         a_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.auditor = voted_auditor
         receipt.save()
         
@@ -809,7 +809,7 @@ def casballot(request):
         p_voted = CAS_Candidate.objects.get(fullname=voted_pio)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.pio = voted_pio
         receipt.save()
         
@@ -823,7 +823,7 @@ def casballot(request):
         b_voted = CAS_Candidate.objects.get(fullname=voted_buss)
         b_voters = b_voted.voters
         b_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.businessmanager = voted_buss
         receipt.save()
         
@@ -837,7 +837,7 @@ def casballot(request):
         p_voted = CAS_Candidate.objects.get(fullname=voted_peace)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='CAS')
         receipt.peaceofficer = voted_peace
         receipt.save()
         return HttpResponseRedirect(reverse('receipt'))
@@ -931,7 +931,7 @@ def cotresult(request):
 @login_required(login_url='login')
 @verified_or_superuser
 @cot_voter_or_superuser
-@not_voted_or_superuser
+@department_not_voted_or_superuser
 @cot_schedule_or_superuser
 def cotballot(request):
     context = {
@@ -947,9 +947,9 @@ def cotballot(request):
     }
     if request.method == 'POST':
         voter = request.user
-        voter.voted = True
+        voter.voted_department = True
         voter.save()
-        sweetify.success(request, 'Voted Submitted!')      
+        sweetify.success(request, 'Vote Submitted!')      
         
 
     ###### GOVERNOR ######
@@ -959,7 +959,7 @@ def cotballot(request):
         g_voted = COT_Candidate.objects.get(fullname=voted_governor)
         g_voters = g_voted.voters
         g_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.governor = voted_governor
         receipt.save()
 
@@ -973,7 +973,7 @@ def cotballot(request):
         vg_voted = COT_Candidate.objects.get(fullname=voted_vicegovernor)
         vg_voters = vg_voted.voters
         vg_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.vice_governor = voted_vicegovernor
         receipt.save()
 
@@ -988,7 +988,7 @@ def cotballot(request):
         s_voted = COT_Candidate.objects.get(fullname=voted_secretary)
         s_voters = s_voted.voters
         s_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.secretary = voted_secretary
         receipt.save()
 
@@ -1003,7 +1003,7 @@ def cotballot(request):
         t_voted = COT_Candidate.objects.get(fullname=voted_treasurer)
         t_voters = t_voted.voters
         t_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.treasurer = voted_treasurer
         receipt.save()
         
@@ -1017,7 +1017,7 @@ def cotballot(request):
         a_voted = COT_Candidate.objects.get(fullname=voted_auditor)
         a_voters = a_voted.voters
         a_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.auditor = voted_auditor
         receipt.save()
         
@@ -1031,7 +1031,7 @@ def cotballot(request):
         p_voted = COT_Candidate.objects.get(fullname=voted_pio)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.pio = voted_pio
         receipt.save()
         
@@ -1045,7 +1045,7 @@ def cotballot(request):
         b_voted = COT_Candidate.objects.get(fullname=voted_buss)
         b_voters = b_voted.voters
         b_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.businessmanager = voted_buss
         receipt.save()
         
@@ -1059,7 +1059,7 @@ def cotballot(request):
         p_voted = COT_Candidate.objects.get(fullname=voted_peace)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department="COT")
         receipt.peaceofficer = voted_peace
         receipt.save()
         return HttpResponseRedirect(reverse('receipt'))
@@ -1147,9 +1147,11 @@ def mainssgresult(request):
     return render(request, 'main/mainssgresult.html', context)
 
 
+
 @login_required(login_url='login')
 @verified_or_superuser
 @main_schedule_or_superuser
+@main_not_voted_or_superuser
 def mainssgballot(request):
     context = {
         'title': 'Main SSG Ballot',
@@ -1164,9 +1166,9 @@ def mainssgballot(request):
     }
     if request.method == 'POST':
         voter = request.user
-        voter.voted = True
+        voter.voted_main = True
         voter.save()
-        sweetify.success(request, 'Voted Submitted!')
+        sweetify.success(request, 'Vote Submitted!')
         
         
 
@@ -1177,7 +1179,7 @@ def mainssgballot(request):
         g_voted = MAINSSG_Candidate.objects.get(fullname=voted_governor)
         g_voters = g_voted.voters
         g_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.governor = voted_governor
         receipt.save()
 
@@ -1191,7 +1193,7 @@ def mainssgballot(request):
         vg_voted = MAINSSG_Candidate.objects.get(fullname=voted_vicegovernor)
         vg_voters = vg_voted.voters
         vg_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.vice_governor = voted_vicegovernor
         receipt.save()
 
@@ -1206,7 +1208,7 @@ def mainssgballot(request):
         s_voted = MAINSSG_Candidate.objects.get(fullname=voted_secretary)
         s_voters = s_voted.voters
         s_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.secretary = voted_secretary
         receipt.save()
 
@@ -1221,7 +1223,7 @@ def mainssgballot(request):
         t_voted = MAINSSG_Candidate.objects.get(fullname=voted_treasurer)
         t_voters = t_voted.voters
         t_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.treasurer = voted_treasurer
         receipt.save()
         
@@ -1235,7 +1237,7 @@ def mainssgballot(request):
         a_voted = MAINSSG_Candidate.objects.get(fullname=voted_auditor)
         a_voters = a_voted.voters
         a_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.auditor = voted_auditor
         receipt.save()
         
@@ -1249,7 +1251,7 @@ def mainssgballot(request):
         p_voted = MAINSSG_Candidate.objects.get(fullname=voted_pio)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.pio = voted_pio
         receipt.save()
         
@@ -1263,7 +1265,7 @@ def mainssgballot(request):
         b_voted = MAINSSG_Candidate.objects.get(fullname=voted_buss)
         b_voters = b_voted.voters
         b_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.businessmanager = voted_buss
         receipt.save()
         
@@ -1277,7 +1279,7 @@ def mainssgballot(request):
         p_voted = MAINSSG_Candidate.objects.get(fullname=voted_peace)
         p_voters = p_voted.voters
         p_voters.add(voter)
-        receipt = Receipt.objects.get(owner=voter)
+        receipt = Receipt.objects.get(owner=voter, department='Main Branch')
         receipt.peaceofficer = voted_peace
         receipt.save()
         return HttpResponseRedirect(reverse('receipt'))
@@ -1287,3 +1289,113 @@ def mainssgballot(request):
 
 
     return render(request, 'main/mainssgballot.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def settings(request):
+    if request.method == 'POST':
+        ### MAIN ####
+        try:
+            reset_main = request.POST['reset_main']
+            candidates = MAINSSG_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.voters.clear()
+            sweetify.toast(request, 'Main SSG Election successfully reset!')
+        except:
+            print('Cannot Reset Main Branch')
+        try:
+            delete_main = request.POST['delete_main']
+            candidates = MAINSSG_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.delete()
+            sweetify.toast(request, 'Main SSG Candidates successfully deleted!')
+        except:
+            print('Cannot Reset Main Branch')
+
+        
+        ### CEIT ####
+
+        try:
+            reset_ceit = request.POST['reset_ceit']
+            candidates = CEIT_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.voters.clear()
+            sweetify.toast(request, 'CEIT Election successfully reset!')
+        except:
+            print('Cannot Reset CEIT Department')
+        try:
+            delete_ceit = request.POST['delete_ceit']
+            candidates = CEIT_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.delete()
+            sweetify.toast(request, 'CEIT Candidates successfully deleted!')
+        except:
+            print('Cannot Reset CEIT Department')
+
+
+        
+        ### CTE ####
+
+        try:
+            reset_cte = request.POST['reset_cte']
+            candidates = CTE_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.voters.clear()
+            sweetify.toast(request, 'CTE Election successfully reset!')
+        except:
+            print('Cannot Reset CTE Department')
+        try:
+            delete_cte = request.POST['delete_cte']
+            candidates = CTE_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.delete()
+            sweetify.toast(request, 'CTE Candidates successfully deleted!')
+        except:
+            print('Cannot Reset CTE Department')
+
+
+        
+        ### CAS ####
+
+        try:
+            reset_cas = request.POST['reset_cas']
+            candidates = CAS_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.voters.clear()
+            sweetify.toast(request, 'CAS Election successfully reset!')
+        except:
+            print('Cannot Reset CAS Department')
+        try:
+            delete_cas = request.POST['delete_cas']
+            candidates = CAS_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.delete()
+            sweetify.toast(request, 'CAS Candidates successfully deleted!')
+        except:
+            print('Cannot Reset CAS Department')
+
+        
+        ### COT ####
+        
+        try:
+            reset_cot = request.POST['reset_cot']
+            candidates = COT_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.voters.clear()
+            sweetify.toast(request, 'COT Election successfully reset!')
+        except:
+            print('Cannot Reset COT Department')
+        try:
+            delete_cot = request.POST['delete_cot']
+            candidates = COT_Candidate.objects.all()
+            for candidate in candidates:
+                candidate.delete()
+            sweetify.toast(request, 'COT Candidates successfully deleted!')
+        except:
+            print('Cannot Reset COT Department')
+        
+
+    context = {
+        'title': 'Settings'
+    }
+    return render(request, 'main/settings.html', context)

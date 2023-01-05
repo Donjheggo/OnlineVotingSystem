@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1 class="h3 mb-2 text-primary font-weight-bolder text-center"> College of Engineering and Information Technology Department Election</h1>
-<form action="" method="POST">
+<form method="POST" action="" >
     {% csrf_token %}
         <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
 
@@ -386,6 +386,5 @@
     </div>
     <!-- End Modal -->
     {% endfor %}
-
 
 {% endblock body %}

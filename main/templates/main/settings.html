@@ -1,0 +1,175 @@
+{% extends 'main/layout.html' %}
+
+
+{% block body %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                    <h1 class="h3 mb-2 text-primary font-weight-bolder text-center">Settings</h1><br>
+
+                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+
+                    <div class="col-xl-12 col-md-12 mb-6 mb-2" >
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h4 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            Instruction
+                                        </div>
+                                        <div class="help">
+                                            <ul class="text-left">
+                                                <li>Reset button will reset the election tally and result.</li>
+                                                <li>Delete button will delete all candidates.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-md-12 mb-6 mb-2" >
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            Main Branch
+                                        </div>
+                                        <div class="text-center d-flex justify-content-center">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="reset_main" value="reset_main" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Reset </button>
+                                            </form>
+                                            
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="delete_main" value="delete_main" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Delete </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+       
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            CEIT Department
+                                        </div>
+                                        <div class="text-center d-flex justify-content-center">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="reset_ceit" value="reset_ceit" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Reset </button>
+                                            </form>
+                                            
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="delete_ceit" value="delete_ceit" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Delete </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            CTE Department
+                                        </div>
+                                        <div class="text-center d-flex justify-content-center">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="reset_cte" value="reset_cte" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Reset </button>
+                                            </form>
+                                            
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="delete_cte" value="delete_cte" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Delete </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            CAS Department
+                                        </div>
+                                        <div class="text-center d-flex justify-content-center">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="reset_cas" value="reset_cas" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Reset </button>
+                                            </form>
+                                            
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="delete_cas" value="delete_cas" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Delete </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-6 mb-2">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1 text-center">
+                                            COT Department
+                                        </div>
+                                        <div class="text-center d-flex justify-content-center">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="reset_cot" value="reset_cot" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Reset </button>
+                                            </form>
+                                            
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <input type="text" name="delete_cot" value="delete_cot" hidden>
+                                                <button type="submit" class="ml-2 mt-3 btn btn-primary"> Delete </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                
+                </div>
+            </div>
+
+{% endblock %}

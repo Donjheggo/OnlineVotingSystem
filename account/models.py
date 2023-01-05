@@ -38,7 +38,8 @@ class Account(AbstractUser):
         ), null=True)
     otp = models.IntegerField(null=True)
     verified = models.BooleanField(default=False)
-    voted = models.BooleanField(default=False)
+    voted_department = models.BooleanField(default=False)
+    voted_main = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = "email"
@@ -47,4 +48,4 @@ class Account(AbstractUser):
 
 
     def __str__(self):
-        return self.last_name + " " + self.first_name
+        return self.last_name + ", " + self.first_name

@@ -31,8 +31,8 @@
                             <td class="d-flex justify-content-center"><img src="{{ cot.photo_url }}" width="100xp" height="100px"></td>
                             <td>{{cot.fullname}}</td>
                             <td>{{cot.bio}}</td>
-                            <td>{% for voters in cot.voters.all %} {{ voters }},  {% endfor %}</td> 
-                            <td>{{ cot.voters|length }} </td> 
+                            <td>{% for voters in cot.voters.all.all %} {{ voters }},  {% endfor %}</td> 
+                            <td>{{ cot.voters.all|length }} </td> 
                         </tr>   
                         {% endfor %}
                     </tbody>

@@ -32,7 +32,7 @@
                             <td>{{cas.fullname}}</td>
                             <td>{{cas.bio}}</td>
                             <td>{% for voters in cas.voters.all %} {{ voters }},  {% endfor %}</td> 
-                            <td>{{ cas.voters|length }} </td> 
+                            <td>{{ cas.voters.all|length }} </td> 
                         </tr>   
                         {% endfor %}
                     </tbody>

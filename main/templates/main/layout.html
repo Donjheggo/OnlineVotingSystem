@@ -51,11 +51,6 @@
             </div>
             <div class="sidebar-brand-text mx-2">SNSU COMELEC</div>
         </a>
-        <hr class="sidebar-divider d-none d-md-block">
- 
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
 
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -231,8 +226,19 @@
                 </div>
             </div>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'settings' %}">
+                <i class="fa-solid fa-gears"></i>
+                <span>Settings</span></a>
+        </li>
         {% endif %}
 
+    <!-- <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> -->
 
     </ul>
     <!-- End of Sidebar -->
@@ -247,7 +253,7 @@
             <nav class="navbar navbar-expand navbar-light mb-4 bg-white topbar static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
 
@@ -405,6 +411,7 @@
             ]
         });
     </script>
+
     
 </body>
 

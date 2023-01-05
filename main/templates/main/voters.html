@@ -16,20 +16,24 @@
                 <table class="table table-bordered tally-table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Email</th>
                             <th>Full Name</th>
                             <th>Deparment</th>
                             <th>Verification Status</th>
-                            <th>Voting Status</th>
+                            <th>Main Branch Voting Status</th>
+                            <th>Department Voting Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for voter in voters %}
                         <tr>
+                            <td> {{ voter.email }} </td>
                             <td> {{ voter.last_name }}, {{ voter.first_name }}</td>
                             <td> {{ voter.department }} </td>
                             <td class="text-center"> {% if voter.verified %} <div class="badge bg-primary text-white rounded-pill">Verified</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
-                            <td class="text-center"> {% if voter.voted %} <div class="badge bg-primary text-white rounded-pill">Voted</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
+                            <td class="text-center"> {% if voter.voted_main %} <div class="badge bg-primary text-white rounded-pill">Voted</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
+                            <td class="text-center"> {% if voter.voted_department %} <div class="badge bg-primary text-white rounded-pill">Voted</div> {% else %} <div class="badge text-white bg-warning rounded-pill">Pending</div> {% endif %}</td>
                             <td class="text-center">  
                                 <a href="{% url 'updatevoter' voter.id %}" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
                                 <a href="{% url 'deletevoter' voter.id %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>

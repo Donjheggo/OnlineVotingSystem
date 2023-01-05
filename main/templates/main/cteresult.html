@@ -33,7 +33,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for governor in governor %}
-                                    <li> {{governor.voters|length }} </li>
+                                    <li> {{governor.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -71,7 +71,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for vicegovernor in vicegovernor %}
-                                    <li> {{vicegovernor.voters|length }} </li>
+                                    <li> {{vicegovernor.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -110,7 +110,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for secretary in secretary %}
-                                    <li> {{secretary.voters|length }} </li>
+                                    <li> {{secretary.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -150,7 +150,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for treasurer in treasurer %}
-                                    <li> {{treasurer.voters|length }} </li>
+                                    <li> {{treasurer.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -189,7 +189,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for auditor in auditor %}
-                                    <li> {{auditor.voters|length }} </li>
+                                    <li> {{auditor.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -228,7 +228,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for pio in pio %}
-                                    <li> {{pio.voters|length }} </li>
+                                    <li> {{pio.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -267,7 +267,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for businessmanager in businessmanager %}
-                                    <li> {{businessmanager.voters|length }} </li>
+                                    <li> {{businessmanager.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -306,7 +306,7 @@
                             <div class="col-6 text-center mt-3">
                                 <ul class="h5" style="list-style: none;">
                                     {% for peaceofficer in peaceofficer %}
-                                    <li> {{peaceofficer.voters|length }} </li>
+                                    <li> {{peaceofficer.voters.all|length }} </li>
                                     {% endfor %}
                                 </ul>
                             </div>

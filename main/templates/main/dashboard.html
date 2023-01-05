@@ -5,7 +5,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                    <h1 class="h3 mb-2 text-primary font-weight-bolder text-center">Dasboard</h1><br>
+                    <h1 class="h3 mb-2 text-primary font-weight-bolder text-center">Dashboard</h1><br>
 
                 <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
 
@@ -189,7 +189,6 @@
                 </div>
 
                 <h1 class="h3 mb-2 text-primary font-weight-bolder text-center mt-5">Tallies</h1><br>
-                
 
                 <div class="row mt-3" data-aos="fade-right" data-aos-anchor="#trigger-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
 
@@ -213,7 +212,7 @@
                                             <tr>
                                                 <td>{{ceit.position}}</td>
                                                 <td>{{ceit.fullname}}</td>
-                                                <td>{{ ceit.voters|length }} </td> 
+                                                <td>{{ ceit.voters.all|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -245,7 +244,7 @@
                                             <tr>
                                                 <td>{{cte.position}}</td>
                                                 <td>{{cte.fullname}}</td>
-                                                <td>{{ cte.voters|length }} </td> 
+                                                <td>{{ cte.voters.all|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -276,7 +275,7 @@
                                             <tr>
                                                 <td>{{cas.position}}</td>
                                                 <td>{{cas.fullname}}</td>
-                                                <td>{{ cas.voters|length }} </td> 
+                                                <td>{{ cas.voters.all|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -307,7 +306,7 @@
                                             <tr>
                                                 <td>{{cot.position}}</td>
                                                 <td>{{cot.fullname}}</td>
-                                                <td>{{ cot.voters|length }} </td> 
+                                                <td>{{ cot.voters.all|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>
@@ -339,7 +338,7 @@
                                             <tr>
                                                 <td>{{mainssg.position}}</td>
                                                 <td>{{mainssg.fullname}}</td>
-                                                <td>{{ mainssg.voters|length }} </td> 
+                                                <td>{{ mainssg.voters.all|length }} </td> 
                                             </tr>   
                                             {% endfor %}
                                         </tbody>

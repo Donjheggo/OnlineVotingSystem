@@ -27,7 +27,7 @@ class RegistrationForm(FormSettings):
       formEmail = self.cleaned_data['email'].lower()
 
       domain = formEmail.split('@')[1]
-      domain_list = ["gmail.com","hotmail.com","yahoo.com"]
+      domain_list = ["ssct.edu.ph"]
       if domain not in domain_list:
          raise forms.ValidationError("Please enter ssct gsuite email")
       if self.instance.pk is None: 
@@ -54,20 +54,19 @@ class RegistrationForm(FormSettings):
    class Meta:
       model = Account
       fields = ['last_name', 'first_name', 'email', 'department', 'password',]
-      # department_choices = (
-      #    ('CEIT','CEIT'),
-      #    ('CTE','CTE'),
-      #    ('CAS','CAS'),
-      #    ('COT','COT'),
-      # )
+      department_choices = (
+         ('CEITSS','CEITSS'),
+         ('CTE','CTE'),
+         ('CAS','CAS'),
+         ('COT','COT'),
+      )
       widgets = {
       'last_name':forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder':'Last name' }),
       'first_name':forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder':'First Name' }),
       'password': forms.PasswordInput(attrs={'type': 'password', 'class': 'form-control', 'placeholder':'Password' }),
       'email': forms.TextInput(attrs={'type': 'email', 'class': 'form-control', 'placeholder':'Email' }),
-      'department': forms.Select(attrs={'class': 'form-control' }),
-      # 'department': forms.Select(choices=department_choices,attrs={'class': 'form-control' }),
-   }
+      'department': forms.Select(attrs={'class': 'form-control', }),
+      }      
 
 
 class UpdateProfileForm(FormSettings):

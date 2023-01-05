@@ -17,6 +17,18 @@ def verified_or_superuser(function):
 
   return wrap
 
+def receipt_exist(function):
+  @wraps(function)
+  def wrap(request, *args, **kwargs):
+        profile = request.user
+        if Receipt.objects.filter(owner=profile):
+             return function(request, *args, **kwargs)
+        else:
+            sweetify.error(request, "You don't have a voting receipt yet")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+  return wrap
+
 
 def not_superuser(function):
      @wraps(function)
@@ -28,16 +40,29 @@ def not_superuser(function):
                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
      return wrap
 
-def not_voted_or_superuser(function):
+def department_not_voted_or_superuser(function):
      @wraps(function)
      def wrap(request, *args, **kwargs):
           profile = request.user
-          if not profile.voted or profile.is_superuser:
+          if not profile.voted_department or profile.is_superuser:
                return function(request, *args, **kwargs)
           else:
                sweetify.error(request, 'You have already voted!')
                return HttpResponseRedirect(reverse('receipt'))
      return wrap
+
+
+def main_not_voted_or_superuser(function):
+     @wraps(function)
+     def wrap(request, *args, **kwargs):
+          profile = request.user
+          if not profile.voted_main or profile.is_superuser:
+               return function(request, *args, **kwargs)
+          else:
+               sweetify.error(request, 'You have already voted!')
+               return HttpResponseRedirect(reverse('receipt'))
+     return wrap
+
 
 def ceit_voter_or_superuser(function):
   @wraps(function)

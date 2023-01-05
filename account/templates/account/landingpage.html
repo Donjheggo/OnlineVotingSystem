@@ -30,6 +30,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+
   
   </head>
   
@@ -101,14 +103,14 @@
   
             <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
               <div class="content">
-                <h3>About</h3>
-                <h2>This project aims to develop and design a fast, easy and secure online voting system.</h2>
-                <p>
+                <h3>About</h3><br>
+                <h2 style="text-align: justify;">This project aims to develop and design a fast, easy and secure online voting system.</h2> <br>
+                <h5 style="text-align: justify;">
                   This project was done by 4th year students under the course of Bachelor of Science in Information and Communication Technology, who are currently enrolled at Surigao del Norte State University.
-                </p>
-                <p>
+                </h5><br>
+                <!-- <p>
                   The project is built for the Surigao del Norte State University covering all its campuses located in the municipalities of Mainit, Malimono, and Del Carmen and in Surigao City all of the Province of Surigao del Norte. It is based on a fast, secure, and scalable technology that can be applicable to other higher education institutions (HEIs) in the Philippines.
-                </p>
+                </p> -->
               </div>
             </div>
   
@@ -145,7 +147,7 @@
               <div class="service-box blue">
                 <i class="ri-speed-line icon"></i>
                 <h3>Fast</h3>
-                <p>This voting system will help us to minimize the voting time duration because aside providing the voters an online platform to vote, the system will automatically count the votes for each candidates.
+                <p style="text-align: justify;">This voting system will help us to minimize the voting time duration because aside providing the voters an online platform to vote, the system will automatically count the votes for each candidates.
                 </p>
                 <!-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
               </div>
@@ -155,7 +157,7 @@
               <div class="service-box orange">
                 <i class="ri-check-double-line icon"></i>
                 <h3>Easy</h3>
-                <p>The developers of this system made a simple user interface to make this web application user friendly.
+                <p style="text-align: justify;">The developers of this system made a simple user interface to make this web application user friendly.
                 </p>
                <!--  <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> -->
               </div>
@@ -165,7 +167,7 @@
               <div class="service-box green">
                 <i class="ri-lock-line icon"></i>
                 <h3>Secure</h3>
-                <p>This system is made by <a style="color: blue;" href="https://www.djangoproject.com/">Django</a>, a Python framework that has solid security. It contains clickjacking protection in the form of the X-Frame-Options middleware, which in a supporting browser can prevent a site from being rendered inside a frame.
+                <p style="text-align: justify;">This system is made by <a style="color: blue;" href="https://www.djangoproject.com/">Django</a>, a Python framework that has solid security. It contains clickjacking protection in the form of the X-Frame-Options middleware, which in a supporting browser can prevent a site from being rendered inside a frame.
                 </p>
                
               </div>
@@ -176,6 +178,74 @@
   
       </section>
       <!-- End Services Section -->
+
+
+      <section id="services" class="services">
+  
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+  
+          <header class="section-header">
+            <!-- <h2>Services</h2> -->
+            <p>VOTING SCHEDULE</p>
+          </header>
+  
+          <div class="row gy-4">
+            {% if schedules %}
+            {% for schedule in schedules %}
+            <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-box blue">
+                <i class="ri-time-line icon"></i>
+                <h3>{{ schedule.department }}</h3> <br>
+                
+                {% if schedule.end > today %}
+
+                     {% if schedule.start > today %}
+                    <h5>Starts: 
+                      <span id="{{ schedule.department }}_start" class="text-success"> </span>
+                    </h5>
+                     {% elif schedule.start == today %}
+                    <h5>Ends: 
+                      <span id="{{ schedule.department }}_end" class="text-success"> </span> 
+                    </h5>
+                     {% endif %}
+     
+                {% else %}
+
+                <h5 class="text-danger">ELECTION ENDED </h5> 
+
+                {% endif %}
+
+
+              </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+
+            <div class="col-lg-12 col-md-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-box blue">
+                <h3> NO SCHEDULE POSTED </h3> <br>
+              </div>
+            </div>
+
+
+
+            {% endif %}
+
+            <div style="display: none;" class="col-lg-12 col-md-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-box blue">
+                <h3 id="test_start"></h3> <br>
+                <h3 id="test_end">  </h3> <br>
+              </div>
+            </div>
+
+
+
+          </div>
+  
+        </div>
+  
+      </section>
   
         
       <!-- ======= Contact Section ======= -->
@@ -296,11 +366,421 @@
       </div>
     </footer><a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
     <script src="{% static 'landingpage/js/main.js' %}"></script>
+    <script src="{% static 'landingpage/js/swiper-bundle.min.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+
+    <!-- CEIT TIMER -->
+    {% if ceit.start > today %}
+    <script>
+      
+    var CEIT_start_countDownDate = new Date("{{ ceit.start }} 00:01:00").getTime();
+      
+      
+      var x = setInterval(function() {
+      
+      
+        var now = new Date().getTime();
+          
+      
+        var distance = CEIT_start_countDownDate - now;
+          
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        document.getElementById("CEIT_start").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+          
+          
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("CEIT_start").innerHTML = "00d 00h 00m 00s";
+        }
+      }, 1000);
+
+
+  </script> 
+{% endif %}
+
+
+
+{% if ceit.start == today %}
+<script>
+      
+
+    var CEIT_end_countDownDate = new Date("{{ ceit.end }} 23:59:00").getTime();
+
+      
+      var x = setInterval(function() {
+      
+      
+        var now = new Date().getTime();
+          
+      
+        var distance = CEIT_end_countDownDate - now;
+          
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        document.getElementById("CEIT_end").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+          
+          
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("CEIT_end").innerHTML = "00d 00h 00m 00s";
+        }
+      }, 1000);
+
+      </script>
+
+{% endif %}
+
+
+<!-- CTE TIMER -->
+
+
+{% if cte.start > today %}
+<script>
+      
+  var CTE_start_countDownDate = new Date("{{ cte.start }} 00:01:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = CTE_start_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("CTE_start").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("CTE_start").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+
+</script> 
+
+{% endif %}
+
+
+
+{% if cte.start == today %}
+<script>
+
+  var CTE_end_countDownDate = new Date("{{ cte.end }} 23:59:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = CTE_end_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("CTE_end").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("CTE_end").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+    </script>
+
+{% endif %}
+
+
+
+{% if cas.start > today %}
+<!-- CAS TIMER -->
+<script>
+      
+  var CAS_start_countDownDate = new Date("{{ cas.start }} 00:01:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = CAS_start_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("CAS_start").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("CAS_start").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+</script> 
+{% endif %}
+
+
+{% if cas.start == today %}
+
+<script>
+
+  var CAS_end_countDownDate = new Date("{{ cas.end }} 23:59:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = CAS_end_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("CAS_end").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("CAS_end").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+    </script>
+{% endif %}
+
+
+<!-- COT TIMER -->
+{% if cot.end > today %}
+<script>
+      
+  var COT_start_countDownDate = new Date("{{ cot.start }} 00:01:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = COT_start_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("COT_start").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("COT_start").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+</script> 
+{% endif %}
+
+
+{% if schedule.start == today %}
+<script>
+
+  var COT_end_countDownDate = new Date("{{ cot.end }} 23:59:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = COT_end_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("COT_end").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("COT_end").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+    </script>
+{% endif %}
+
+<!-- MAIN TIMER -->
+
+{% if main.start > today %}
+<script>
+      
+  var Main_start_countDownDate = new Date("{{ main.start }} 00:01:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = Main_start_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("Main_start").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("Main_start").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+</script> 
+{% endif %}
+
+
+{% if main.start == today %}
+<script>
+
+  var Main_end_countDownDate = new Date("{{ main.end }} 23:59:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = Main_end_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("Main_end").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("Main_end").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+    </script>
+
+  {% endif %}
+
+
+
+<script>
+      
+  var test_start_countDownDate = new Date("{{ test.start }} 00:01:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = test_start_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("test_start").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("test_start").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+  var test_end_countDownDate = new Date("{{ test.end }} 23:59:00").getTime();
+    
+    
+    var x = setInterval(function() {
+    
+    
+      var now = new Date().getTime();
+        
+    
+      var distance = test_end_countDownDate - now;
+        
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      document.getElementById("test_end").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+        
+        
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("test_end").innerHTML = "00d 00h 00m 00s";
+      }
+    }, 1000);
+
+    </script>
+
+
+<!-- TEST TIMER -->
+
   
 
-    </body>
-    </html>
+</body>
+</html>

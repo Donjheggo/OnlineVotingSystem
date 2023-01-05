@@ -11,7 +11,43 @@ import smtplib
 
 
 def landingpage(request):
-    return render(request, 'account/landingpage.html')
+    if votingschedule.objects.filter(department='CEIT').exists():
+        ceit = votingschedule.objects.get(department='CEIT') 
+    else:
+        ceit = 'No Schedule'
+
+    if votingschedule.objects.filter(department='CTE').exists():
+        cte = votingschedule.objects.get(department='CTE') 
+    else:
+        cte = 'No Schedule'
+
+    if votingschedule.objects.filter(department='CAS').exists():
+        cas = votingschedule.objects.get(department='CAS') 
+    else:
+        cas = 'No Schedule'
+
+    if votingschedule.objects.filter(department='COT').exists():
+        cot = votingschedule.objects.get(department='COT') 
+    else:
+        cot = 'No Schedule'
+    if votingschedule.objects.filter(department='Main').exists():
+        main = votingschedule.objects.get(department='Main') 
+    else:
+        main = 'No Schedule'
+    if votingschedule.objects.all().exists():
+        schedules = votingschedule.objects.all()
+    else:
+        schedules = []
+    context = {
+        'ceit': ceit,
+        'cte': cte,
+        'cas': cas,
+        'cot': cot,
+        'main': main,
+        'today': datetime.date.today(),
+        'schedules': schedules
+    }
+    return render(request, 'account/landingpage.html', context)
 
 
 def generate_otp():
@@ -61,12 +97,13 @@ def login_view(request):
                 login(request, user)
                 user = request.user
                 user.verified = True
+                Receipt.objects.create(owner=user, department="Main Branch")
+                Receipt.objects.create(owner=user, department=user.department)
                 user.save()
-                Receipt.objects.create(owner=user)
                 sweetify.success(request, 'Login Successfully')
                 return HttpResponseRedirect(reverse('home'))
         else:
-            sweetify.error(request, 'Invalid Credentialss')
+            sweetify.error(request, 'Invalid Credentials')
             return render(request, 'account/login.html', {'error': 'Invalid Credentials'})
     return render(request, 'account/login.html')
 
@@ -84,8 +121,9 @@ def verify(request):
         if otp == user.otp:
             user = request.user
             user.verified = True
+            Receipt.objects.create(owner=user, department=user.department)
+            Receipt.objects.create(owner=user, department='Main Branch')
             user.save()
-            Receipt.objects.create(owner=user)
             sweetify.success(request, 'Login Successfully')
             return HttpResponseRedirect(reverse('home'))
         else:
@@ -113,8 +151,8 @@ def register_view(request):
             sweetify.error(request, 'Email already exist!')
             return render(request, 'account/register.html', {'error': 'Email already exist!','Registration_Form':Registration_Form})
         else:
-            sweetify.error(request, 'Invalid Credentials!')
-            return render(request, 'account/register.html', {'error': 'Invalid Credentials!','Registration_Form':Registration_Form})
+            sweetify.error(request, 'Invalid Credentials')
+            return render(request, 'account/register.html', {'error': 'Invalid Credentials','Registration_Form':Registration_Form})
     return render(request, 'account/register.html', {'Registration_Form':Registration_Form})
 
 

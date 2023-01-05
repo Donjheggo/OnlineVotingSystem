@@ -174,7 +174,8 @@ class COT_Candidate(models.Model):
 
 class Receipt(models.Model):
     owner = models.ForeignKey(Account, on_delete=models.CASCADE)
-    created_at = datetime.datetime.now().date()
+    department = models.CharField(max_length=50, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
     governor = models.CharField(max_length=50, blank=True, null=True)
     vice_governor = models.CharField(max_length=50, blank=True, null=True)
     secretary = models.CharField(max_length=50, blank=True, null=True)

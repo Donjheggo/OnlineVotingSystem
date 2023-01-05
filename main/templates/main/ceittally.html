@@ -20,7 +20,7 @@
                             <th>Photo</th>
                             <th>Full Name</th>
                             <th>Bio</th>
-                            <th>Voters</th>
+                            <!-- <th>Voters</th> -->
                             <th>Votes</th>
                         </tr>
                     </thead>
@@ -31,8 +31,8 @@
                             <td class="d-flex justify-content-center"><img src="{{ ceit.photo_url }}" width="100xp" height="100px"></td>
                             <td>{{ceit.fullname}}</td>
                             <td>{{ceit.bio}}</td>
-                            <td>{% for voters in ceit.voters.all %} {{ voters }},  {% endfor %}</td> 
-                            <td>{{ ceit.voters|length }} </td> 
+                            <!-- <td>{% for voters in ceit.voters.all %} {{ voters }},  {% endfor %}</td>  -->
+                            <td>{{ ceit.voters.all|length }} </td> 
                         </tr>   
                         {% endfor %}
                     </tbody>

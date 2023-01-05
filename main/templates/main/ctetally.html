@@ -31,8 +31,8 @@
                             <td class="d-flex justify-content-center"><img src="{{ cte.photo_url }}" width="100xp" height="100px"></td>
                             <td>{{cte.fullname}}</td>
                             <td>{{cte.bio}}</td>
-                            <td>{% for voters in cte.voters.all %} {{ voters }},  {% endfor %}</td> 
-                            <td>{{cte.voters|length }} </td> 
+                            <td>{% for voters in cte.all.all %} {{ voters }},  {% endfor %}</td> 
+                            <td>{{cte.voters.all|length }} </td> 
                         </tr>   
                         {% endfor %}
                     </tbody>
