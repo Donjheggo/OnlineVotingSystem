@@ -5,7 +5,7 @@ This E - Voting System Was Developed By [Fermilan, Christian Jhegg](https://www.
 
 You can ADD a STAR ⭐️  if you like this project 👆
 
-This automated voting system for institutions and/or organizations is implemented using the Django-built Voting System web application. The voting process is similar to the conventional election manual system in that the list of candidates and voters must be entered into the system. This e-voting system was made for a capstone project by a student. The user interface of the system has two parts: one for administrators and one for voters. The administrator is in charge of populating and managing the data of the system and the voter side, which is where the voters will choose their candidate and submit their votes.
+This automated voting system for school is implemented using the Django-built Voting System web application. The voting process is similar to the conventional election manual system in that the list of candidates and voters must be entered into the system. This e-voting system was made for a capstone project by a student. The user interface of the system has two parts: one for administrators and one for voters. The administrator is in charge of populating and managing the data of the system and the voter side, which is where the voters will choose their candidate and submit their votes.
 
 
 [Front-end Template](https://startbootstrap.com/theme/sb-admin-2 "SB Admin 2")
