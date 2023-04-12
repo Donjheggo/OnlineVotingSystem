@@ -192,8 +192,10 @@ $  pip3 install -r requirements.txt
 ```
 
 **5. Run migrations and migrate**
-```python manage.py makemigrations```
-```python manage.py migrate```
+```python 
+$  python manage.py makemigrations
+```python 
+$  python manage.py migrate
 
 **6. Now Run Server**
 
