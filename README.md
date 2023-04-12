@@ -194,6 +194,8 @@ $  pip3 install -r requirements.txt
 **5. Run migrations and migrate**
 ```python 
 $  python manage.py makemigrations
+
+**5.1 Migrate**
 ```python 
 $  python manage.py migrate
 
