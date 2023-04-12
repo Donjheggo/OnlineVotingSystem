@@ -191,13 +191,15 @@ $  cd snsucomelec
 $  pip3 install -r requirements.txt
 ```
 
-**5. Run migrations and migrate**
+**5. Run migrations**
 ```python 
 $  python manage.py makemigrations
+```
 
-**5.1 Migrate**
+**5.1 and Migrate**
 ```python 
 $  python manage.py migrate
+```
 
 **6. Now Run Server**
 
